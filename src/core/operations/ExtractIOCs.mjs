@@ -49,6 +49,7 @@ class ExtractIOCs extends Operation {
     run(input, args) {
         // const [firstArg, secondArg] = args;
         const DOMAIN_REGEX_EXCL = /\b((?=[a-z0-9-]{1,63}\.)(xn--)?[a-z0-9]+(-[a-z0-9]+)*\.)+[a-z]{2,63}\b/ig;
+        //const DOMAIN_REGEX_EXCL = /\s(?!:\/\/)[a-zA-Z0-9][a-zA-Z0-9-]{0,61}[a-zA-Z0-9]\.[a-zA-Z]{2,}/ig;
         const IPv4 = /(?:(?:\d|[01]?\d\d|2[0-4]\d|25[0-5])\.){3}(?:25[0-5]|2[0-4]\d|[01]?\d\d|\d)(?:\/\d{1,2})?/gi;
 
         let result = "DOMAINS\n=======\n";
