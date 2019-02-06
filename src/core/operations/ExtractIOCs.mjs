@@ -5,8 +5,8 @@
  */
 
 import Operation from "../Operation";
-import OperationError from "../errors/OperationError";
-import { search, DOMAIN_REGEX, URL_REGEX } from "../lib/Extract";
+//import OperationError from "../errors/OperationError";
+import { search, URL_REGEX } from "../lib/Extract";
 
 /**
  * Extract IOCs operation
@@ -58,7 +58,6 @@ class ExtractIOCs extends Operation {
         result = result + "IPv4\n====\n" + search(input, IPv4) + "\n";
 
         return result;
-        throw new OperationError("Test");
     }
 
 }
