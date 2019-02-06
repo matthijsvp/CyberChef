@@ -6,6 +6,7 @@
 
 import Operation from "../Operation";
 import OperationError from "../errors/OperationError";
+import { search, DOMAIN_REGEX, URL_REGEX } from "../lib/Extract";
 
 /**
  * Extract IOCs operation
@@ -47,9 +48,14 @@ class ExtractIOCs extends Operation {
      */
     run(input, args) {
         // const [firstArg, secondArg] = args;
-        let result = ""
-        result = search(input, DOMAIN_REGEX);
-        result = result + search(input, URL_REGEX)
+        const DOMAIN_REGEX_EXCL = /\b((?=[a-z0-9-]{1,63}\.)(xn--)?[a-z0-9]+(-[a-z0-9]+)*\.)+[a-z]{2,63}\b/ig;
+        const IPv4 = new RegExp("(?:(?:\\d|[01]?\\d\\d|2[0-4]\\d|25[0-5])\\.){3}(?:25[0-5]|2[0-4]\\d|[01]?\\d\\d|\\d)(?:\\/\\d{1,2})?", "ig");
+
+        let result = "DOMAINS\n=======\n";
+        result = result + search(input, DOMAIN_REGEX_EXCL) + "\n";
+        result = result + "URLS\n====\n" + search(input, URL_REGEX) + "\n";
+        result = result + "IPv4\n====\n" + search(input, IPv4) + "\n";
+
         return result;
         throw new OperationError("Test");
     }
