@@ -184,6 +184,7 @@
     {
         "name": "Utils",
         "ops": [
+            "Extract IOCs",
             "Diff",
             "Remove whitespace",
             "Remove null bytes",
