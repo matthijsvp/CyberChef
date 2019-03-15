@@ -40,10 +40,14 @@ class ExtractIOCs extends Operation {
      * @returns {string}
      */
     run(input, args) {
-        // const [firstArg, secondArg] = args;
+        const [refangFirst] = args;
         const DOMAIN_REGEX_EXCL = /(?:(^|\s))(((?=[a-z0-9-]{1,63}\.)(xn--)?[a-z0-9]+(-[a-z0-9]+)*\.)+[a-z]{2,63}(?=\s))/gmi;
         //const DOMAIN_REGEX_EXCL = /\s(?!:\/\/)[a-zA-Z0-9][a-zA-Z0-9-]{0,61}[a-zA-Z0-9]\.[a-zA-Z]{2,}/ig;
         const IPv4 = /(?:(?:\d|[01]?\d\d|2[0-4]\d|25[0-5])\.){3}(?:25[0-5]|2[0-4]\d|[01]?\d\d|\d)(?:\/\d{1,2})?/gi;
+
+        if (refangFirst): {
+            input = input.replace("hxxp", "http");
+        }
 
         let result = "DOMAINS\n=======\n";
 
